@@ -1,116 +1,130 @@
-   <!--漂浮图片 2020.5.21-->
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <title>王导导在拉票！</title>
-       <style type="text/css">
-           #floatdivids{
-               width: auto;
-               height: auto;
-               position: absolute;
-               top: 0;
-               left: 0;
-               z-index: 1000;
-               border: 0px solid #ccc;
-           }
-           #ClickRemoveFlo{
-               position: absolute;
-               top: 0;
-               right: 0;
-               color: #fff;
-               background-color: rgba(0, 0, 0, 0.2);
-               padding: 0 3px;
-           }
-           #floatdivids img{
-               width:170px;
-               height:150px;
-               vertical-align:middle;
-               border:0;
-           }
-           #floattext{           
-               color: pink;
-               font-size: 8px;
-               text-align: center;
-               background-color: rgba(0, 0, 0, 0.5); 
-           }
-           #floattext a{
-               text-decoration:none;
-               color: pink;
-           }
-           #floattext a:hover{
-               background: url('https://puui.qpic.cn/vshpic/0/1C0673E749D0337314A2AF4F3FFADA1A1586916972/0?max_age=7776000');
-           }
-       </style>
-       <script type="text/javascript">
-           var isinter;
-           var millisec = 25;//定时器间隔执行时间/毫秒
-           var xflo = 0; //漂浮层x坐标
-           var yflo = 0; //漂浮层y坐标
-           var yistop = false;
-           var xisleft = true;
-           function floatadfun(){
-               kwidth = $(window).width();//可视区域宽度
-               kheight = $(window).height();//可视区域高度
-               divwidth = $('#floatdivids').width();//div漂浮层宽度
-               divheight = $('#floatdivids').height();//div漂浮层高度
-               hstop = jQuery(window).scrollTop();//滚动条距离顶部的高度
-               wsleft = jQuery(window).scrollLeft();//滚动条距离最左边的距离
-               offwidth = (kwidth-divwidth);//div偏移的宽度
-               offheight = (kheight-divheight);//div偏移的高度
-               if (!yistop) {
-                   yflo++;
-                   if (yflo >= offheight) {
-                       yistop = true;
-                   }
-               } else {
-                   yflo--;
-                   if (yflo <= 0) {
-                       yistop = false;
-                   }
-               }
-               if (xisleft) {
-                   xflo++;
-                   if (xflo >= offwidth) {
-                       xisleft = false;
-                   }
-               } else {
-                   xflo--;
-                   if (xflo <= 0) {
-                       xisleft = true;
-                   }
-               }
-               $('#floatdivids').css({'top':yflo+hstop,'left':xflo+wsleft}); /* 如果使用固定定位，请把加上滚动条的距离去掉即可 */
-           } 
-           $(function () {
-               isinter = setInterval("floatadfun()",millisec);
-               $('#floatdivids').mouseover(function () {
-                   clearInterval(isinter);
-               }).mouseout(function () {
-                   isinter = setInterval("floatadfun()",millisec);
-               });
-               $('#ClickRemoveFlo').click(function () {
-                   $(this).parents("#floatdivids").slideUp(500,function(){
-                       clearInterval(isinter);
-                       $(this).remove();
-                   });
-               });
-           });
-           alert('hhh')
-       </script>
-       
-       
-   </head>
-   <body>
-       <div id="floatdivids">
-           <a href="https://m.v.qq.com/activity/h5/303_index/index.html?actityId=107015"  target="_blank"> 
-               <img src="https://images.cnblogs.com/cnblogs_com/wangdaodao/1767334/o_200521051611%E6%9C%AA%E6%A0%87%E9%A2%98-1.png" > 
-           </a>
-       <span id="ClickRemoveFlo">X</span>
-       <div id="floattext"> 
-           <a href="https://m.v.qq.com/activity/h5/303_index/index.html?actityId=107015"  target="_blank">请点击为她们投票，谢谢!</a></div>      	
-       </div>
-        <font size=90>我好饿！！！</font>
-   </body>
-   </html>
-   
+<!--漂浮图片 2020.5.21-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>王导导在拉票！</title>
+    <style type="text/css">
+        #floatdivids {
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 150px;
+            z-index: 1000;
+            border: 0px solid #ccc;
+            background-image: url('https://vfiles.gtimg.cn/vupload/202004/1229c71588127756278.png');
+            background-size: contain;
+        }
+
+        #ClickRemoveFlo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 0 3px;
+        }
+
+        #floatdivids img {
+            width: 90px;
+            height: 100px;
+            vertical-align: middle;
+            border: 10;
+            /* margin-top: 100px; */
+            /* margin-left: 200px; */
+
+        }
+
+        #floattext {
+            color: pink;
+            font-size: 8px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #floattext a {
+            text-decoration: none;
+            color: pink;
+        }
+
+        #floattext a:hover {
+            background: url('https://puui.qpic.cn/vshpic/0/1C0673E749D0337314A2AF4F3FFADA1A1586916972/0?max_age=7776000');
+        }
+    </style>
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        var isinter;
+        var millisec = 25;//定时器间隔执行时间/毫秒
+        var xflo = 0; //漂浮层x坐标
+        var yflo = 0; //漂浮层y坐标
+        var yistop = false;
+        var xisleft = true;
+        function floatadfun() {
+            kwidth = $(window).width();//可视区域宽度
+            kheight = $(window).height();//可视区域高度
+            divwidth = $('#floatdivids').width();//div漂浮层宽度
+            divheight = $('#floatdivids').height();//div漂浮层高度
+            hstop = jQuery(window).scrollTop();//滚动条距离顶部的高度
+            wsleft = jQuery(window).scrollLeft();//滚动条距离最左边的距离
+            offwidth = (kwidth - divwidth);//div偏移的宽度
+            offheight = (kheight - divheight);//div偏移的高度
+            if (!yistop) {
+                yflo++;
+                if (yflo >= offheight) {
+                    yistop = true;
+                }
+            } else {
+                yflo--;
+                if (yflo <= 0) {
+                    yistop = false;
+                }
+            }
+            if (xisleft) {
+                xflo++;
+                if (xflo >= offwidth) {
+                    xisleft = false;
+                }
+            } else {
+                xflo--;
+                if (xflo <= 0) {
+                    xisleft = true;
+                }
+            }
+            $('#floatdivids').css({ 'top': yflo + hstop, 'left': xflo + wsleft }); /* 如果使用固定定位，请把加上滚动条的距离去掉即可 */
+        }
+        $(function () {
+            isinter = setInterval("floatadfun()", millisec);
+            $('#floatdivids').mouseover(function () {
+                clearInterval(isinter);
+            }).mouseout(function () {
+                isinter = setInterval("floatadfun()", millisec);
+            });
+            $('#ClickRemoveFlo').click(function () {
+                $(this).parents("#floatdivids").slideUp(500, function () {
+                    clearInterval(isinter);
+                    $(this).remove();
+                });
+            });
+        });
+        window.alert('hhh')
+    </script>
+    <div id="floatdivids">
+        <a href="https://m.v.qq.com/activity/h5/303_index/index.html?actityId=107015" target="_blank">
+            <img src="https://puui.qpic.cn/vshpic/0/298046324C7B701DDB8438C0F70450751586916534/0?max_age=7776000">
+            <img src="https://puui.qpic.cn/vshpic/0/1C0673E749D0337314A2AF4F3FFADA1A1586916972/0?max_age=7776000">
+        </a>
+        <span id="ClickRemoveFlo">X</span>
+        <div id="floattext">
+            <a href="https://m.v.qq.com/activity/h5/303_index/index.html?actityId=107015"
+                target="_blank">请点击为她们投票，谢谢!</a></div>
+    </div>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<!--
+    这个是html文件的声明
+    位于html文档中的最前面的位置，处于 <html> 标签之前。
+    不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
+    PUBLIC 的内容就是引用一个dtd来说明html的版本
+-->
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+	<style type="text/css">
+		body{height: 10000px;width: 5000px;}
+		#floatdivids{
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: #ff8015;
+			z-index: 1000;
+			border: 1px solid #ccc;
+		}
+	</style>
+	<script type="text/javascript">
+		var isinter;
+		var millisec = 25;//定时器间隔执行时间/毫秒
+		var xflo = 0; //漂浮层x坐标
+		var yflo = 0; //漂浮层y坐标
+		var yistop = false;
+		var xisleft = true;
+		function floatadfun(){
+			kwidth = $(window).width();//可视区域宽度
+			kheight = $(window).height();//可视区域高度
+ 
+			divwidth = $('#floatdivids').width();//div漂浮层宽度
+			divheight = $('#floatdivids').height();//div漂浮层高度
+ 
+			hstop = jQuery(window).scrollTop();//滚动条距离顶部的高度
+			wsleft = jQuery(window).scrollLeft();//滚动条距离最左边的距离
+ 
+			offwidth = (kwidth-divwidth);//div偏移的宽度
+			offheight = (kheight-divheight);//div偏移的高度
+ 
+			if (!yistop) {
+				yflo++;
+				if (yflo >= offheight) {
+					yistop = true;
+				}
+			} else {
+				yflo--;
+				if (yflo <= 0) {
+					yistop = false;
+				}
+			}
+ 
+			if (xisleft) {
+				xflo++;
+				if (xflo >= offwidth) {
+					xisleft = false;
+				}
+			} else {
+				xflo--;
+				if (xflo <= 0) {
+					xisleft = true;
+				}
+			}
+ 
+			$('#floatdivids').css({'top':yflo+hstop,'left':xflo+wsleft}); /* 如果使用固定定位，请把加上滚动条的距离去掉即可 */
+		}
+ 
+		$(function () {
+			isinter = setInterval("floatadfun()",millisec);
+			$('#floatdivids').mouseover(function () {
+				clearInterval(isinter);
+			}).mouseout(function () {
+				isinter = setInterval("floatadfun()",millisec);
+			});
+			$('#ClickRemoveFlo').click(function () {
+				$(this).parents("#floatdivids").slideUp(500,function(){
+					clearInterval(isinter);
+					$(this).remove();
+				});
+			});
+		});
+	</script>
+	
+</head>
+
+<body>
+	<script>
+		kwidth = $(window.kwidth())
+
+	</script>
+<div id="floatdivids">
+	<span id="ClickRemoveFlo" style="position: absolute;top: 0;right: 0;color: #fff;background-color: rgba(0, 0, 0, 0.5);padding: 0 5px;cursor: pointer;">X</span>
+	小鹿乱撞！！<br>弹弹弹！
+</div>
+</body>
+/Volumes/My Sata/python/Git/cnblog/test-img.html
+</html>
